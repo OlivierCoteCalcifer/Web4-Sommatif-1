@@ -1,0 +1,62 @@
+h1 {
+    text-align: center;
+}
+
+#liste-jeux > li {
+    display: flex;
+    padding: 5px 3em 5px 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    justify-content: space-between;
+    flex-direction: row;
+    border: 2px solid black;
+    width: 50%;
+}
+
+#liste-jeux p {
+    flex:2;
+}
+#liste-jeux {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.titre-jeu {
+    font-weight: bold;
+}
+
+.difficulte-1 {
+    background-color: chartreuse;
+}
+
+.difficulte-2 {
+    background-color: yellow;
+}
+
+.difficulte-3 {
+    background-color: burlywood;
+}
+
+.difficulte-4 {
+    background-color: crimson;
+    color: white;
+}
+
+.difficulte-5 {
+    background-color: darkred;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    #liste-jeux > li {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        text-align: center;
+    }
+    .titre-jeu, .editeur-jeu{
+        margin:0;
+    }
+}
