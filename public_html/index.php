@@ -1,34 +1,40 @@
 <?php
 
-require_once('php/Repertoire.php');
-require_once('php/Jeu.php');
-require_once('php/Editeur.php');
-require_once('php/Difficulte.php');
+require_once 'php/Repertoire.php';
+require_once 'php/Jeu.php';
+require_once 'php/Editeur.php';
+require_once 'php/Difficulte.php';
 
-use Cegep\Web4\GestionJeu\Jeu;
-use Cegep\Web4\GestionJeu\Editeur;
-use Cegep\Web4\GestionJeu\Repertoire;
-use Cegep\Web4\GestionJeu\Difficulte;
+use Cegep\Web4\GestionJeu\{Jeu, Editeur, Repertoire, Difficulte};
 
 $repertoire = new Repertoire();
-$editeurBandai = new Editeur('Bandai Namco');
-$editeurFS = new Editeur('From Software');
-$editeurUbi = new Editeur('Ubisoft');
-$editeurBio = new Editeur('Bioware');
-$editeurCapcom = new Editeur('Capcom');
-$repertoire->ajouterJeu([
-    new Jeu('One piece: Odyssey', $editeurBandai, Difficulte::Tres_difficile),
-    new Jeu('Dark Souls 3', $editeurFS, Difficulte::Difficile),
-    new Jeu('Sekiro: Shadow die twice', $editeurFS, Difficulte::Tres_difficile),
-    new Jeu('Assasins Creed: Valhalla', $editeurUbi, Difficulte::Facile),
-    new Jeu('Dragon Age: Inquisition', $editeurBio, Difficulte::Tres_Facile),
-    new Jeu('Mass Effect 1', $editeurBio, Difficulte::Facile),
-    new Jeu('Mass Effect 2', $editeurBio, Difficulte::Tres_Facile),
-    new Jeu('Mass Effect 3', $editeurBio, Difficulte::Moyen),
-    new Jeu('Prince of Persia: Warrior Within', $editeurUbi, Difficulte::Difficile),
-    new Jeu('Street Fighter 6', $editeurBandai, Difficulte::Moyen)
-]);
-//array_multisort(array_column((array)$repertoire, 'difficulte'), SORT_ASC, $liste);
+$publishers = [
+    'Bandai Namco' => new Editeur('Bandai Namco'),
+    'From Software' => new Editeur('From Software'),
+    'Ubisoft' => new Editeur('Ubisoft'),
+    'Bioware' => new Editeur('Bioware'),
+    'Capcom' => new Editeur('Capcom'),
+];
+
+$gamesData = [
+    ['One piece: Odyssey', $publishers['Bandai Namco'], Difficulte::Tres_difficile],
+    ['Dark Souls 3', $publishers['From Software'], Difficulte::Difficile],
+    ['Sekiro: Shadow die twice', $publishers['From Software'], Difficulte::Tres_difficile],
+    ['Assassins Creed: Valhalla', $publishers['Ubisoft'], Difficulte::Facile],
+    ['Mass Effect 2', $publishers['Bioware'], Difficulte::Tres_Facile],
+    ['Mass Effect 1', $publishers['Bioware'], Difficulte::Facile],
+    ['Mass Effect 3', $publishers['Bioware'], Difficulte::Moyen],
+    ['Street Fighter 6', $publishers['Capcom'], Difficulte::Moyen],
+    ['Prince of Persia: Warrior Within', $publishers['Ubisoft'], Difficulte::Difficile],
+    ['Dragon Age: Inquisition', $publishers['Bioware'], Difficulte::Tres_Facile]
+];
+foreach ($gamesData as [$title, $publisher, $difficulty]) {
+    $repertoire->ajouterJeu(new Jeu($title, $publisher, $difficulty));
+}
+
+$games = $repertoire->getJeux();
+usort($games, fn($a, $b) => $a->getDifficulte()->value <=> $b->getDifficulte()->value);
+
 
 ?>
 <!doctype html>
@@ -46,6 +52,14 @@ $repertoire->ajouterJeu([
 
 <h1>Sommatif #1</h1>
 <ul id="liste-jeux">
-    <?php
-    var_dump($repertoire) ?>
+<?php
+    foreach($games as $game){
+        ?><li class="difficulte-<?= $game->getDifficulte()->value ?>">
+            <p class="titre-jeu"><?= $game->getTitre()?></p>
+            <p class="editeur-jeu"><?= $game->getEditeur()->nom ?></p>
+        </li>
+    <?php } ?>
+
+
+</ul>
 </html>

@@ -4,9 +4,8 @@ h1 {
 
 #liste-jeux > li {
     display: flex;
-    padding: 5px 3em 5px 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    padding: 5px 10px;
+    border-radius: 2px;
     justify-content: space-between;
     flex-direction: row;
     border: 2px solid black;
@@ -21,6 +20,8 @@ h1 {
     flex-direction: column;
     align-content: center;
     flex-wrap: wrap;
+    gap:15px;
+    padding-left:0;
 }
 
 .titre-jeu {
@@ -28,7 +29,7 @@ h1 {
 }
 
 .difficulte-1 {
-    background-color: chartreuse;
+    background-color: lawngreen;
 }
 
 .difficulte-2 {
@@ -54,7 +55,7 @@ h1 {
         display: flex;
         justify-content: space-evenly;
         flex-direction: column;
-        text-align: center;
+        text-align: left;
     }
     .titre-jeu, .editeur-jeu{
         margin:0;

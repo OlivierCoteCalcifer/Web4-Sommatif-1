@@ -13,4 +13,7 @@ class Repertoire
             $this->liste[] = $jeu;
         }
     }
+    public function getJeux(): array {
+        return $this->liste;
+    }
 }

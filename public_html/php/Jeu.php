@@ -16,8 +16,8 @@ class Jeu
     /** @var Editeur  Editeur du jeu.*/
     private Editeur $editeur;
 
-    /** @var Difficulte Difficulte du jeu.*/
-    private Difficulte $difficulte;
+    /** @var \Cegep\Web4\GestionJeu\Difficulte Difficulte du jeu. */
+    private \Cegep\Web4\GestionJeu\Difficulte $difficulte;
     public function __construct($titre,$editeur,$difficulte)
     {
         $this->titre = $titre;
@@ -35,7 +35,7 @@ class Jeu
         return $this->editeur;
     }
 
-    public function getDifficulte(): Difficulte
+    public function getDifficulte(): \Cegep\Web4\GestionJeu\Difficulte
     {
         return $this->difficulte;
     }
