@@ -18,7 +18,7 @@ enum Difficulte: int
     case Facile = 2;
 
     /**
-     * Moyenavec une valeur de 3.
+     * Moyen avec une valeur de 3.
      */
     case Moyen = 3;
 

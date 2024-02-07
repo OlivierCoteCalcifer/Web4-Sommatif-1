@@ -1,9 +1,10 @@
 <?php
 
-require_once 'php/Repertoire.php';
-require_once 'php/Jeu.php';
-require_once 'php/Editeur.php';
-require_once 'php/Difficulte.php';
+session_start();
+require_once 'php/classes/Repertoire.php';
+require_once 'php/classes/Jeu.php';
+require_once 'php/classes/Editeur.php';
+require_once 'php/classes/Difficulte.php';
 
 use Cegep\Web4\GestionJeu\{Jeu, Editeur, Repertoire, Difficulte};
 
@@ -31,11 +32,8 @@ $gamesData = [
 foreach ($gamesData as [$title, $publisher, $difficulty]) {
     $repertoire->ajouterJeu(new Jeu($title, $publisher, $difficulty));
 }
-
 $games = $repertoire->getJeux();
-usort($games, fn($a, $b) => $a->getDifficulte()->value <=> $b->getDifficulte()->value);
-
-
+usort($games, fn($a, $b) => $a->getTitre() <=> $b->getTitre());
 ?>
 <!doctype html>
 <html lang="fr">
@@ -49,16 +47,33 @@ usort($games, fn($a, $b) => $a->getDifficulte()->value <=> $b->getDifficulte()->
     <script src="js/scripts.js?v=1.0.0" defer></script>
 </head>
 <body>
-
+<div class="header">
+    <?php
+    if (!isset($_SESSION['usager'])) {
+        ?>
+        <a href="php/pages/login.php"> Se connecter</a>
+        <?php
+    } else {
+        ?>
+        <div>
+            <a href="php/pages/ajoutEditeur.php">Ajouter un éditeur</a>
+            <a href="php/pages/ajoutJeu.php">Ajouter un jeu</a>
+            <a href="php/pages/logout.php">Déconnecter</a>
+        </div>
+        <?php
+    }
+    ?>
+</div>
 <h1>Sommatif #1</h1>
 <ul id="liste-jeux">
     <?php
     foreach ($games as $game) {
         ?>
         <li class="difficulte-<?= $game->getDifficulte()->value ?>">
-        <p class="titre-jeu"><?= $game->getTitre() ?></p>
-        <p class="editeur-jeu"><?= $game->getEditeur()->nom ?></p>
+            <p class="titre-jeu"><?= $game->getTitre() ?></p>
+            <p class="editeur-jeu"><?= $game->getEditeur()->nom ?></p>
         </li>
-    <?php } ?>
+        <?php
+    } ?>
 </ul>
 </html>

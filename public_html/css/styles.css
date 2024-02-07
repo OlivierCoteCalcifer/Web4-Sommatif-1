@@ -1,5 +1,28 @@
+html {
+    font-family: "Rasa Light", serif;
+}
+
+
 h1 {
     text-align: center;
+}
+
+.header {
+    background-color: lavender;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    min-height: 40px;
+}
+
+.header > a {
+    color: black;
+}
+
+.back-to-index {
+    padding: 15px;
 }
 
 #liste-jeux > li {
@@ -9,7 +32,7 @@ h1 {
     justify-content: space-between;
     flex-direction: row;
     border: 2px solid black;
-    width: 50%;
+    width: 70%;
 }
 
 #liste-jeux p {
@@ -50,6 +73,26 @@ h1 {
 .difficulte-5 {
     background-color: darkred;
     color: white;
+}
+.back-to-index{
+    margin:15px;
+}
+.form {
+    padding: 25px 15px;
+    width: 80%
+}
+
+.form > input {
+    width: 100%;
+}
+
+.error-msg {
+    color: red;
+    padding-top: 20px;
+}
+
+#button-submit {
+    width: 25%;
 }
 
 @media screen and (max-width: 768px) {
