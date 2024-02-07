@@ -52,14 +52,13 @@ usort($games, fn($a, $b) => $a->getDifficulte()->value <=> $b->getDifficulte()->
 
 <h1>Sommatif #1</h1>
 <ul id="liste-jeux">
-<?php
-    foreach($games as $game){
-        ?><li class="difficulte-<?= $game->getDifficulte()->value ?>">
-            <p class="titre-jeu"><?= $game->getTitre()?></p>
-            <p class="editeur-jeu"><?= $game->getEditeur()->nom ?></p>
+    <?php
+    foreach ($games as $game) {
+        ?>
+        <li class="difficulte-<?= $game->getDifficulte()->value ?>">
+        <p class="titre-jeu"><?= $game->getTitre() ?></p>
+        <p class="editeur-jeu"><?= $game->getEditeur()->nom ?></p>
         </li>
     <?php } ?>
-
-
 </ul>
 </html>

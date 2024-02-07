@@ -13,15 +13,16 @@ h1 {
 }
 
 #liste-jeux p {
-    flex:2;
+    flex: 2;
 }
+
 #liste-jeux {
     display: flex;
     flex-direction: column;
     align-content: center;
     flex-wrap: wrap;
-    gap:15px;
-    padding-left:0;
+    gap: 15px;
+    padding-left: 0;
 }
 
 .titre-jeu {
@@ -32,6 +33,7 @@ h1 {
     background-color: lawngreen;
 }
 
+/*noinspection ALL*/
 .difficulte-2 {
     background-color: yellow;
 }
@@ -57,7 +59,8 @@ h1 {
         flex-direction: column;
         text-align: left;
     }
-    .titre-jeu, .editeur-jeu{
-        margin:0;
+
+    .titre-jeu, .editeur-jeu {
+        margin: 0;
     }
 }
