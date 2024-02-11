@@ -1,4 +1,5 @@
 <?php
+
 namespace Cegep\Web4\GestionJeu;
 
 /**

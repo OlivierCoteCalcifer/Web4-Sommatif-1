@@ -9,7 +9,7 @@ require_once 'php/classes/Difficulte.php';
 use Cegep\Web4\GestionJeu\{Jeu, Editeur, Repertoire, Difficulte};
 
 $repertoire = new Repertoire();
-$publishers = [
+$editeurs = [
     'Bandai Namco' => new Editeur('Bandai Namco'),
     'From Software' => new Editeur('From Software'),
     'Ubisoft' => new Editeur('Ubisoft'),
@@ -18,19 +18,19 @@ $publishers = [
 ];
 
 $gamesData = [
-    ['One piece: Odyssey', $publishers['Bandai Namco'], Difficulte::Tres_difficile],
-    ['Dark Souls 3', $publishers['From Software'], Difficulte::Difficile],
-    ['Sekiro: Shadow die twice', $publishers['From Software'], Difficulte::Tres_difficile],
-    ['Assassins Creed: Valhalla', $publishers['Ubisoft'], Difficulte::Facile],
-    ['Mass Effect 2', $publishers['Bioware'], Difficulte::Tres_Facile],
-    ['Mass Effect 1', $publishers['Bioware'], Difficulte::Facile],
-    ['Mass Effect 3', $publishers['Bioware'], Difficulte::Moyen],
-    ['Street Fighter 6', $publishers['Capcom'], Difficulte::Moyen],
-    ['Prince of Persia: Warrior Within', $publishers['Ubisoft'], Difficulte::Difficile],
-    ['Dragon Age: Inquisition', $publishers['Bioware'], Difficulte::Tres_Facile]
+    ['One piece: Odyssey', $editeurs['Bandai Namco'], Difficulte::Tres_difficile],
+    ['Dark Souls 3', $editeurs['From Software'], Difficulte::Difficile],
+    ['Sekiro: Shadow die twice', $editeurs['From Software'], Difficulte::Tres_difficile],
+    ['Assassins Creed: Valhalla', $editeurs['Ubisoft'], Difficulte::Facile],
+    ['Mass Effect 2', $editeurs['Bioware'], Difficulte::Tres_Facile],
+    ['Mass Effect 1', $editeurs['Bioware'], Difficulte::Facile],
+    ['Mass Effect 3', $editeurs['Bioware'], Difficulte::Moyen],
+    ['Street Fighter 6', $editeurs['Capcom'], Difficulte::Moyen],
+    ['Prince of Persia: Warrior Within', $editeurs['Ubisoft'], Difficulte::Difficile],
+    ['Dragon Age: Inquisition', $editeurs['Bioware'], Difficulte::Tres_Facile]
 ];
-foreach ($gamesData as [$title, $publisher, $difficulty]) {
-    $repertoire->ajouterJeu(new Jeu($title, $publisher, $difficulty));
+foreach ($gamesData as [$title, $editeur, $difficulty]) {
+    $repertoire->ajouterJeu(new Jeu($title, $editeur, $difficulty));
 }
 $games = $repertoire->getJeux();
 usort($games, fn($a, $b) => $a->getTitre() <=> $b->getTitre());

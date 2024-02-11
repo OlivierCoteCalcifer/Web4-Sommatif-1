@@ -1,6 +1,7 @@
 <?php
-    session_unset();
-    session_destroy();
+session_start();
+session_unset();
+session_destroy();
 ?>
 <!doctype html>
 <html lang="fr">
@@ -14,10 +15,10 @@
     <script src="../../js/scripts.js?v=1.0.0" defer></script>
 </head>
 <body>
-    <div class="header">
-        <a href="../../index.php">Retour</a>
-    </div>
-    <h1>Vous êtes déconnecté</h1>
+<div class="header">
+    <a href="../../index.php">Retour</a>
+</div>
+<h1>Vous êtes déconnecté</h1>
 </body>
 </html>
 

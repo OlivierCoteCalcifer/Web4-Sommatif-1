@@ -1,7 +1,9 @@
 html {
     font-family: "Rasa Light", serif;
 }
-
+body{
+    margin:0;
+}
 
 h1 {
     text-align: center;
@@ -21,8 +23,20 @@ h1 {
     color: black;
 }
 
+.header div {
+    display: flex;
+    column-gap: 20px;
+}
+
 .back-to-index {
     padding: 15px;
+}
+
+#body-login-logout {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
 }
 
 #liste-jeux > li {
@@ -74,16 +88,14 @@ h1 {
     background-color: darkred;
     color: white;
 }
-.back-to-index{
-    margin:15px;
-}
+
 .form {
     padding: 25px 15px;
-    width: 80%
+    width: 50%;
 }
 
 .form > input {
-    width: 100%;
+    min-width: 50vw;
 }
 
 .error-msg {
@@ -91,8 +103,13 @@ h1 {
     padding-top: 20px;
 }
 
+select {
+    width: 50vw;
+}
+
 #button-submit {
     width: 25%;
+    min-width:0;
 }
 
 @media screen and (max-width: 768px) {

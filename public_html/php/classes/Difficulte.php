@@ -23,12 +23,12 @@ enum Difficulte: int
     case Moyen = 3;
 
     /**
-     * Difficileavec une valeur de 4.
+     * Difficile avec une valeur de 4.
      */
     case Difficile = 4;
 
     /**
-     * Très difficileavec une valeur de 5.
+     * Très difficile avec une valeur de 5.
      */
     case Tres_difficile = 5;
 }

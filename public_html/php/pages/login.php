@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     }
 
     if (empty($erreurs)) {
-    //** IMPORTANT ** Le session_start() doît être avant le html
+        //** IMPORTANT ** Le session_start() doît être avant le html
         session_start();
         $_SESSION['usager'] = $usager;
         $_SESSION['password'] = $password;
@@ -33,21 +33,21 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="../../css/styles.css?v=1.0.0">
     <script src="../../js/scripts.js?v=1.0.0" defer></script>
 </head>
-    <body>
-        <a href="../../index.php" class="back-to-index">Retour</a>
-        <form method="post" class="form">
-            <?php
-            if (!empty($erreurs)):
-                echo "<div class='error-msg'><span>$erreurs</span></div>";
-            endif;
-            ?>
-            <label for="usager">Usager</label><br>
-            <input type="text" id="usager" name="usager" value="<?= $usager; ?>">
-            <br>
-            <label for="password">Mot de passe:</label><br>
-            <input type="text" id="password" name="password" value="">
-            <br><br>
-            <input id="button-submit" type="submit" name="submit" value="Envoyer">
-        </form>
-    </body>
+<body id="body-login-logout">
+<a href="../../index.php" class="back-to-index">Retour</a>
+<form method="post" class="form">
+    <?php
+    if (!empty($erreurs)):
+        echo "<div class='error-msg'><span>$erreurs</span></div>";
+    endif;
+    ?>
+    <label for="usager">Usager</label><br>
+    <input type="text" id="usager" name="usager" value="<?= $usager; ?>">
+    <br>
+    <label for="password">Mot de passe:</label><br>
+    <input type="text" id="password" name="password" value="">
+    <br><br>
+    <input id="button-submit" type="submit" name="submit" value="Envoyer">
+</form>
+</body>
 </html>
