@@ -6,3 +6,22 @@ services:
       - 8080:80
     volumes:
       - ./public_html:/var/www/html
+  db:
+    container_name: local_db
+    image: mariadb:11.2
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=database
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
+
+  phpmyadmin:
+    container_name: local_phpmyadmin
+    image: phpmyadmin:5.2
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - PMA_HOST=db
+    ports:
+      - 8081:80
