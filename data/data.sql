@@ -3,4 +3,4 @@ CREATE TABLE "JEU"(
 	Nom_jeu VARCHAR(100),
 	Editeur_jeu VARCHAR(25),
 	Difficulte_jeu int(11)
-)
+                  )
