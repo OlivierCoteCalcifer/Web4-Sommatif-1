@@ -1,4 +1,8 @@
 <?php
+if (!isset($_SESSION['estConnecte'])) {
+    header('Location: login.php');
+    exit;
+}
 session_start();
 session_unset();
 session_destroy();

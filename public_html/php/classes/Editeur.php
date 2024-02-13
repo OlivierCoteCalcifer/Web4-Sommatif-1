@@ -10,7 +10,7 @@ class Editeur
     /**
      * @var string Nom de l'editeur.
      */
-    public string $nom;
+    private string $nom;
 
     /**
      * Editeur constructor.
@@ -23,7 +23,9 @@ class Editeur
     }
 
     /**
-     * Getter pour le nom
+     * Getter du nom de l'éditeur.
+     *
+     * @return string
      */
     public function getNom(): string
     {

@@ -32,7 +32,7 @@ class Jeu
      * @param Editeur $editeur L'éditeur du jeu.
      * @param Difficulte $difficulte La difficulté du jeu.
      */
-    public function __construct($titre, $editeur, $difficulte)
+    public function __construct(string $titre, Editeur $editeur, Difficulte $difficulte)
     {
         $this->titre = $titre;
         $this->editeur = $editeur;

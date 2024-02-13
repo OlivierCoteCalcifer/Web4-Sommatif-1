@@ -16,9 +16,12 @@ if (isset($_POST['submit'])) {
     }
 
     if (empty($erreurs)) {
-        ajoutEditeur($new_editeur);
-        header('Location: ../../index.php');
-        exit;
+        if(ajoutEditeur($new_editeur)){
+            header('Location: ../../index.php');
+            exit;
+        } else {
+            $erreurs = "** Cette éditeur existe déjà. Veuillez entrez un autre éditeur **";
+        }
     }
 }
 ?>

@@ -48,7 +48,7 @@ usort($liste, fn($a, $b) => strnatcasecmp($a->getTitre(), $b->getTitre()));
             ?>
             <li class="difficulte-<?= $game->getDifficulte()->value ?>">
                 <p class="titre-jeu"><?= $game->getTitre() ?></p>
-                <p class="editeur-jeu"><?= getEditeurBd($game->getEditeur()->nom) ?></p>
+                <p class="editeur-jeu"><?= getEditeurBd($game->getEditeur()->getNom()) ?></p>
             </li>
             <?php
         }

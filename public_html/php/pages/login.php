@@ -9,7 +9,7 @@ $erreurs = [];
 if (isset($_POST['submit'])) {
     if (empty($usager) || empty($password)) {
         $erreurs = " ** Les champs usager et mot de passe sont requis.";
-    } elseif (!($usager == "Olivier" && $password == "1234")) {
+    } elseif (!($usager == "Gabriel" && $password == "root")) {
         $erreurs = " ** Les informations entrées sont invalides.";
     }
 
