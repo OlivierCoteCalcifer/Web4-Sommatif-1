@@ -35,7 +35,7 @@ h1 {
 #body-login-logout {
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
     flex-wrap: wrap;
 }
 
@@ -64,6 +64,7 @@ h1 {
 
 .titre-jeu {
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 .difficulte-1 {

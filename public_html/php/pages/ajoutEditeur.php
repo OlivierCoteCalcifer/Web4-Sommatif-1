@@ -1,6 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['usager'])) {
+include_once ('../bd.php');
+if (!isset($_SESSION['estConnecte'])) {
     header('Location: login.php');
     exit;
 }
@@ -15,7 +16,7 @@ if (isset($_POST['submit'])) {
     }
 
     if (empty($erreurs)) {
-        $_SESSION['new_editeur'] = $new_editeur;
+        ajoutEditeur($new_editeur);
         header('Location: ../../index.php');
         exit;
     }

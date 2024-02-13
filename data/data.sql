@@ -1,6 +1,15 @@
-CREATE TABLE "JEU"(
-	ID int(11) PRIMARY KEY,
-	Nom_jeu VARCHAR(100),
-	Editeur_jeu VARCHAR(25),
-	Difficulte_jeu int(11)
-                  )
+CREATE TABLE IF NOT EXISTS Editeur
+(
+	ID          INT(11) PRIMARY KEY AUTO_INCREMENT,
+	Nom_Editeur VARCHAR(25)
+);
+CREATE TABLE IF NOT EXISTS Jeu
+(
+	ID             INT(11) PRIMARY KEY AUTO_INCREMENT,
+	Nom_jeu        VARCHAR(100),
+	Editeur_jeu    INT(11),
+	Difficulte_jeu INT(11),
+	FOREIGN KEY (Editeur_jeu) REFERENCES Editeur(ID)
+);
+
+

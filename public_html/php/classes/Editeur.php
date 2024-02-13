@@ -17,8 +17,17 @@ class Editeur
      *
      * @param string $editeur Nom de l'editeur.
      */
-    public function __construct($editeur)
+    public function __construct(string $editeur)
     {
         $this->nom = $editeur;
     }
+
+    /**
+     * Getter pour le nom
+     */
+    public function getNom(): string
+    {
+        return $this->nom;
+    }
+
 }

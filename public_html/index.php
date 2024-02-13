@@ -5,36 +5,13 @@ require_once 'php/classes/Repertoire.php';
 require_once 'php/classes/Jeu.php';
 require_once 'php/classes/Editeur.php';
 require_once 'php/classes/Difficulte.php';
+require_once 'php/bd.php';
 
-use Cegep\Web4\GestionJeu\{Jeu, Editeur, Repertoire, Difficulte};
+use Cegep\Web4\GestionJeu\{Jeu, Repertoire};
 
-$repertoire = new Repertoire();
-$editeurs = [
-    'Bandai Namco' => new Editeur('Bandai Namco'),
-    'From Software' => new Editeur('From Software'),
-    'Ubisoft' => new Editeur('Ubisoft'),
-    'Bioware' => new Editeur('Bioware'),
-    'Capcom' => new Editeur('Capcom'),
-];
-
-$gamesData = [
-    ['One piece: Odyssey', $editeurs['Bandai Namco'], Difficulte::Tres_difficile],
-    ['Dark Souls 3', $editeurs['From Software'], Difficulte::Difficile],
-    ['Sekiro: Shadow die twice', $editeurs['From Software'], Difficulte::Tres_difficile],
-    ['Assassins Creed: Valhalla', $editeurs['Ubisoft'], Difficulte::Facile],
-    ['Mass Effect 2', $editeurs['Bioware'], Difficulte::Tres_Facile],
-    ['Mass Effect 1', $editeurs['Bioware'], Difficulte::Facile],
-    ['Mass Effect 3', $editeurs['Bioware'], Difficulte::Moyen],
-    ['Street Fighter 6', $editeurs['Capcom'], Difficulte::Moyen],
-    ['Prince of Persia: Warrior Within', $editeurs['Ubisoft'], Difficulte::Difficile],
-    ['Dragon Age: Inquisition', $editeurs['Bioware'], Difficulte::Tres_Facile]
-];
-foreach ($gamesData as [$title, $editeur, $difficulty]) {
-    $repertoire->ajouterJeu(new Jeu($title, $editeur, $difficulty));
-}
-$games = $repertoire->getJeux();
-usort($games, fn($a, $b) => $a->getTitre() <=> $b->getTitre());
-?>
+$gamesData = getTousLesJeux();
+//usort($games, fn($a, $b) => $a->getTitre() <=> $b->getTitre());
+ ?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -49,31 +26,36 @@ usort($games, fn($a, $b) => $a->getTitre() <=> $b->getTitre());
 <body>
 <div class="header">
     <?php
-    if (!isset($_SESSION['usager'])) {
-        ?>
+    if (!isset($_SESSION['estConnecte'])) {
+    ?>
         <a href="php/pages/login.php"> Se connecter</a>
-        <?php
+    <?php
     } else {
-        ?>
+    ?>
         <div>
             <a href="php/pages/ajoutEditeur.php">Ajouter un éditeur</a>
             <a href="php/pages/ajoutJeu.php">Ajouter un jeu</a>
             <a href="php/pages/logout.php">Déconnecter</a>
         </div>
-        <?php
+    <?php
     }
     ?>
 </div>
 <h1>Sommatif #1</h1>
 <ul id="liste-jeux">
     <?php
-    foreach ($games as $game) {
-        ?>
-        <li class="difficulte-<?= $game->getDifficulte()->value ?>">
-            <p class="titre-jeu"><?= $game->getTitre() ?></p>
-            <p class="editeur-jeu"><?= $game->getEditeur()->nom ?></p>
-        </li>
-        <?php
+    if (!empty($gamesData)) {
+    foreach ($gamesData->getJeux() as $game) {
+        var_dump(getEditeurBd($game->getEditeur()->nom));
+    ?>
+    <li class="difficulte-<?= $game->getDifficulte()->value ?>">
+        <p class="titre-jeu"><?= $game->getTitre() ?></p>
+        <p class="editeur-jeu"><?= getEditeurBd($game->getEditeur()->nom) ?></p>
+    </li>
+    <?php
+    }
+    } else {
+    echo "<h1>Aucun jeu pour le moment...</h1>";
     } ?>
 </ul>
 </html>

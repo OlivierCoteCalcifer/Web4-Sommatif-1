@@ -16,8 +16,7 @@ if (isset($_POST['submit'])) {
     if (empty($erreurs)) {
         //** IMPORTANT ** Le session_start() doît être avant le html
         session_start();
-        $_SESSION['usager'] = $usager;
-        $_SESSION['password'] = $password;
+        $_SESSION['estConnecte'] = true;
         header('Location: ../../index.php');
     }
 } ?>
@@ -34,7 +33,9 @@ if (isset($_POST['submit'])) {
     <script src="../../js/scripts.js?v=1.0.0" defer></script>
 </head>
 <body id="body-login-logout">
-<a href="../../index.php" class="back-to-index">Retour</a>
+<div class="header">
+    <a href="../../index.php" class="back-to-index">Retour</a>
+</div>
 <form method="post" class="form">
     <?php
     if (!empty($erreurs)):
