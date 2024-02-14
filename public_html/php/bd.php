@@ -46,7 +46,7 @@ function ajoutJeu(object $jeu): bool
 
     $stmt->execute();
     $stmt = null;
-
+    $conn = null;
     return false;
 }
 
@@ -71,6 +71,7 @@ function verifGameExist(object $jeu): bool
 
     $result = $checkStmt->fetchColumn() > 0;
     $checkStmt = null;
+    $conn = null;
     return $result;
 }
 
@@ -93,6 +94,7 @@ function ajoutEditeur(string $nom): bool
     $checkStmt->execute();
     $count = $checkStmt->fetchColumn();
 
+    $conn = null;
     if ($count == 0) {
         $insertQuery = "INSERT INTO editeur(nom_editeur) VALUES(:nomUpper)";
         $insertStmt = $conn->prepare($insertQuery);
@@ -121,6 +123,8 @@ function getEditeurId(PDO $conn, string $editeurNom): false|int
     $stmt->execute();
     $editeurId = $stmt->fetchColumn();
 
+    $conn = null;
+    $stmt = null;
     return $editeurId ? (int)$editeurId : false;
 }
 
@@ -138,6 +142,8 @@ function asEditeurDansLaBd(): bool
     $stmt->execute();
 
     $row = $stmt->fetch();
+    $conn = null;
+    $stmt = null;
     return $row === false;
 }
 
@@ -153,7 +159,10 @@ function getAllEditeurBd(): false|array
     $stmt = $conn->prepare($query);
     $stmt->execute();
 
-    return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    $result = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    $conn = null;
+    $stmt = null;
+    return $result;
 }
 
 /**
@@ -171,7 +180,10 @@ function getEditeurBd($Id): false|string
 
     $stmt->execute();
 
-    return $stmt->fetch(PDO::FETCH_COLUMN);
+    $result =  $stmt->fetch(PDO::FETCH_COLUMN);
+    $conn = null;
+    $stmt = null;
+    return $result;
 }
 
 
@@ -193,8 +205,10 @@ function getTousLesJeux(): Repertoire
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $games = new Repertoire();
     foreach ($rows as $row) {
-        $jeu = new Jeu($row['nom_jeu'],
-            new Editeur($row['editeur_jeu']), Difficulte::from($row['difficulte_jeu']));
+        $jeu = new Jeu(
+            $row['nom_jeu'],
+            new Editeur($row['editeur_jeu']), Difficulte::from($row['difficulte_jeu'])
+        );
         $games->ajouterJeu($jeu);
     }
     return $games;
