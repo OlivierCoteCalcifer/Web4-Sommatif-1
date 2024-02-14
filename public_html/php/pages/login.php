@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
     <input type="text" id="usager" name="usager" value="<?= $usager; ?>">
     <br>
     <label for="password">Mot de passe:</label><br>
-    <input type="text" id="password" name="password" value="">
+    <input type="password" id="password" name="password" value="">
     <br><br>
     <input id="button-submit" type="submit" name="submit" value="Envoyer">
 </form>

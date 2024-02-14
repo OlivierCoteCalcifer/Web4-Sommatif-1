@@ -7,17 +7,17 @@ DROP TABLE IF EXISTS editeur;
 
 CREATE TABLE editeur
 (
-	id          INT(11) AUTO_INCREMENT PRIMARY KEY,
-	nom_editeur VARCHAR(25) NOT NULL
+	`id`          INT(11) AUTO_INCREMENT PRIMARY KEY,
+	`nom_editeur` VARCHAR(25) NOT NULL
 );
 
 CREATE TABLE jeu
 (
-	id             INT(11) AUTO_INCREMENT PRIMARY KEY,
-	nom_jeu        VARCHAR(100) NOT NULL,
-	editeur_jeu    INT(11)      NOT NULL,
-	difficulte_jeu INT(11)      NOT NULL,
-	CONSTRAINT fk_editeur FOREIGN KEY (editeur_jeu) REFERENCES editeur (id)
+	`id`             INT(11) AUTO_INCREMENT PRIMARY KEY,
+	`nom_jeu`        VARCHAR(100) NOT NULL,
+	`editeur_jeu`    INT(11)      NOT NULL,
+	`difficulte_jeu` INT(11)      NOT NULL,
+	CONSTRAINT fk_jeu_editeur FOREIGN KEY (editeur_jeu) REFERENCES editeur (id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );
